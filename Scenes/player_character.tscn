@@ -1,0 +1,33 @@
+[gd_scene load_steps=11 format=3 uid="uid://cjcbn0i5rg5cp"]
+
+[ext_resource type="Script" path="res://Scripts/player_character.gd" id="1_dkoj2"]
+[ext_resource type="AudioStream" uid="uid://cp0n6qrxnb1f8" path="res://Assets/stepdirt_1.wav" id="2_pfiwq"]
+[ext_resource type="AudioStream" uid="uid://dxm8hqc2ln6io" path="res://Assets/stepdirt_2.wav" id="3_xdtbr"]
+[ext_resource type="AudioStream" uid="uid://dy3kfhjgrqow7" path="res://Assets/stepdirt_3.wav" id="4_u3ygt"]
+[ext_resource type="AudioStream" uid="uid://c041jcno46006" path="res://Assets/stepdirt_4.wav" id="5_8i7lp"]
+[ext_resource type="AudioStream" uid="uid://bfwo406i0oub3" path="res://Assets/stepdirt_5.wav" id="6_ps3ry"]
+[ext_resource type="AudioStream" uid="uid://cwbi2hga8twgs" path="res://Assets/stepdirt_6.wav" id="7_mp8jl"]
+[ext_resource type="AudioStream" uid="uid://c6hm7jjsa7enl" path="res://Assets/stepdirt_7.wav" id="8_u05pg"]
+[ext_resource type="AudioStream" uid="uid://dycbcpygwx5uv" path="res://Assets/stepdirt_8.wav" id="9_wdrpk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_beue3"]
+
+[node name="PlayerCharacter" type="CharacterBody3D"]
+collision_mask = 14
+script = ExtResource("1_dkoj2")
+walking_sounds = Array[AudioStreamWAV]([ExtResource("2_pfiwq"), ExtResource("3_xdtbr"), ExtResource("4_u3ygt"), ExtResource("5_8i7lp"), ExtResource("6_ps3ry"), ExtResource("7_mp8jl"), ExtResource("8_u05pg"), ExtResource("9_wdrpk")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_beue3")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+current = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -15.032
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

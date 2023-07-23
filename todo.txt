@@ -1,0 +1,25 @@
+TODO:
+
+-Finish Maze
+-- 3 sections, bronze, silver, gold
+-- Win by opening gold door
+
+-Doors
+-- Locked
+-- Unlock with correct Key
+
+- Art
+-- Door model
+-- Lamp/light
+-- Decorations
+--- Bench
+--- Decals (eyes, vines, etc)
+
+-Sound
+-- BG Music
+-- Effects
+--- Frog Collect
+--- Key Collect
+--- Door Locked
+--- Door opened
+--- Win

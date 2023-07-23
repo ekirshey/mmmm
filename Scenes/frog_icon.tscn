@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxhxko4mnwwqh"]
+
+[ext_resource type="Texture2D" uid="uid://cisgi8uofffcx" path="res://Assets/frog_icon.png" id="1_gdqa5"]
+
+[node name="FrogIcon" type="Sprite3D"]
+modulate = Color(1, 1, 1, 0.270588)
+shaded = true
+texture_filter = 1
+texture = ExtResource("1_gdqa5")

@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://dr3tal0yo4usx"]
+
+[ext_resource type="PackedScene" uid="uid://bcnnbof3th5up" path="res://Assets/key.glb" id="1_2pad5"]
+[ext_resource type="Script" path="res://Scripts/collectable.gd" id="1_4m5y0"]
+[ext_resource type="SphereMesh" uid="uid://bnyv5w3oewlnn" path="res://Assets/gold_draw_pass.tres" id="3_lsx32"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e54rd"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lmk8m"]
+size = Vector3(0.45, 1.07, 0.29)
+
+[sub_resource type="Gradient" id="Gradient_ra50a"]
+colors = PackedColorArray(0.870002, 0.809765, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jfk2e"]
+gradient = SubResource("Gradient_ra50a")
+
+[sub_resource type="Gradient" id="Gradient_plccx"]
+colors = PackedColorArray(0.568627, 0.266667, 0, 1, 0.86709, 0.86709, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ar4hh"]
+gradient = SubResource("Gradient_plccx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yrkv5"]
+emission_shape = 3
+emission_box_extents = Vector3(0.25, 1, 0.25)
+direction = Vector3(0, 1, 0)
+spread = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_min = 0.5
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_ar4hh")
+color_initial_ramp = SubResource("GradientTexture1D_jfk2e")
+
+[node name="Key" type="StaticBody3D" groups=["collectable"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_4m5y0")
+collectable_type = 1
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="key" parent="Pivot" instance=ExtResource("1_2pad5")]
+
+[node name="Key" parent="Pivot/key" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_e54rd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.304746, 0)
+shape = SubResource("BoxShape3D_lmk8m")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00173295, -0.185647, 0.00106198)
+amount = 12
+lifetime = 0.25
+speed_scale = 0.5
+visibility_aabb = AABB(-0.590081, -0.500163, -0.749018, 1.18016, 1.51204, 1.49804)
+process_material = SubResource("ParticleProcessMaterial_yrkv5")
+draw_pass_1 = ExtResource("3_lsx32")
+
+[editable path="Pivot/key"]
